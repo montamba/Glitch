@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        main{
+            background: url("../static/img/background/s.avif");
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        form.search{
+            position: relative;
+            padding: 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form.search > input{
+            width: 400px;
+            height: 50px;
+            border-radius: 50px;
+            padding: 5px 20px;
+            border: 4px solid aqua;
+        }
+
+        form.search > input:focus, form.search > input:hover{
+            box-shadow: 0 0 15px aqua;
+        }
+
+        main{
+            display: flex;
+            justify-content: center;
+        }
+        .nones{
+            display: none;
+        }
+
+        .movies{
+            width: 70%;
+            padding: 20px;
+            height: auto;
+            background: lightblue;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            border: 10px solid aquamarine;
+            box-shadow: 0 0 10px aqua;
+        }
+
+        .movies > .moviecontainer{
+            width: 200px;
+            height: 280px;
+            border: 5px solid aqua;
+            border-radius: 20px;
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: aqua;
+            text-shadow: 5px 5px 5px aqua;
+            gap: 5px;
+            box-shadow: 0 0 15px black;
+            transition: 300ms;
+        }
+
+        .movies > .moviecontainer:hover{
+            
+            text-shadow: 0px 0px 10px aquamarine;
+            width: 210px;
+            height: 290px;
+        
+        }
+
+        .movies > .moviecontainer > .moviepic{
+            width: 80%;
+            height: 190px;
+            background-color: black;
+            overflow: hidden;
+
+        }
+
+        .movies > .moviecontainer > .moviepic > img{
+            width: 100%;
+            
+
+        }
+    </style>
+
+    <title>Movies</title>
+</head>
+<body>
+    <nav style="position: relative;z-index:9999;">
+        <div class="logo">
+            <img src="../static/img/icon/Glitch.gif" alt="">
+        </div>
+
+        <div class="buttons">
+            <button class="nv" data-text="Home"><a>Home</a></button>
+            <button class="nv" data-text="Videos"><a>Videos</a></button>
+            <button class="nv" data-text="About Us"><a>About Us</a></button>
+            <button class="nv" data-text="Help"><a>Post</a></button>
+            <button class="profile" onclick="toggleprofile()"><img src="../{{profile[3]}}" alt=""></button>
+        </div>
+
+        
+
+        <span class="tprofile">
+            <button onclick="window.location.href = '/profile'">Profile</button>
+            <button  >Saved</button>
+            <button onclick="window.location.href = '/logout'">Logout</button>
+        </span>
+    </nav>
+
+    <form action="" class="search">
+        <input type="text" placeholder="Search......">
+    </form>
+    <main>
+        
+        <div class="movies">
+            <div class="moviecontainer">
+                <div class="moviepic"><img src="../static/img/movie pic/m3.jpg" alt=""></div>
+                <div class="movieinfo">
+                    <h2 class="title">Spider Man</h2>
+                    <p class="nones description">jajja</p>
+                    <p class="nones genre">hello</p>
+                    <h3 class="rate">★★★★☆</h3>
+                    <h1 style="display:none;" class="id">10</h1>
+    
+                </div>
+            </div>
+
+            {% for movie in data %}
+
+            <div class="moviecontainer">
+                <div class="moviepic"><img src="../{{movie[1]}}" alt=""></div>
+                <div class="movieinfo">
+                    <h2 class="title">{{movie[3]}}</h2>
+                    <p class="nones description">{{movie[4]}}</p>
+                    <p class="nones genre">{{movie[5]}}</p>
+                    <h3 class="rate">
+                        {% for i in range(movie[6]) %}
+                        ★
+
+                        {% endfor %}
+                    </h3>
+                    <h1 style="display:none;" class="id">{{movie[0]}}</h1>
+    
+                </div>
+            </div>
+
+            
+
+            {% endfor %}
+        
+        </div>
+    </main>
+
+
+    <div class="non" id="no">
+        <div class="modalm">
+            <div>
+                <div class="image">
+                    <img id="image" src="" alt="">
+                </div><br>
+                <h1 id="title">Title</h1><br><br>
+                <div><button class="watchbutton" onclick="sendme()">Watch</button><button class="watchbutton">Saved</button></div>
+                <h1 style="display:none;" id="id">1</h1>
+            </div>
+            <div class="la">
+                <div class="description" id="description">
+                    <h1>dkdddddddnhjnbhjmbhjm b</h1>
+                    <p></p>
+
+                </div>
+                <div class="rategenre" style="color:blue;">
+                    <h1 id="rate">Rating: 5/5</h1>
+                    <h3 id="genre">Comedy</h3>
+                </div>
+
+
+            </div>
+            <button class="x" onclick="todisplay()">x</button>
+        </div>
+
+    </div>
+
+    <form method="post" action="/watch" id="hiddenForm" style="display:none;">
+        <input type="text" id="ss" name="mid">
+
+    <form>
+
+
+    <script src="{{ url_for('static', filename='sc.js')}}"></script>
+    <script>
+        function todisplay(...text){
+            let a = document.querySelector(".non");
+            a.classList.toggle("mwatch")
+            if(text.length <= 0){
+                
+            }
+        }
+        
+        let b = document.querySelectorAll(".moviecontainer")
+        b.forEach(b=>{
+            b.addEventListener("click",(event)=>{
+                let image = id("image")
+                let text = id("title")
+                let des = id("description")
+                let gen = id("genre")
+                let rate = id("rate")
+                let moveid = id("id")
+
+                image.src = event.target.src;
+
+                let container = event.currentTarget; 
+
+                text.innerText = container.querySelector(".movieinfo > .title").innerText
+                des.innerText = container.querySelector(".movieinfo > .description").innerText
+                gen.innerText = container.querySelector(".movieinfo > .genre").innerText
+                rate.innerHTML = container.querySelector(".movieinfo > .rate").innerHTML
+                moveid.innerText = container.querySelector(".movieinfo > .id").innerText
+
+
+
+                todisplay()
+            })
+        })
+
+        function id(element){
+            return document.getElementById(element);
+        }
+
+        function sendme(){
+            let md = document.getElementById("id");  
+            let mid = document.getElementById("ss"); 
+            let form = document.getElementById("hiddenForm");
+            mid.value = md.innerText
+            form.submit()
+        }
+
+       
+
+
+
+    
+    </script>
+
+
+    
+</body>
+</html>

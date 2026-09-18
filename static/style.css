@@ -1,0 +1,324 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*
+----------------------Navigation
+*/
+nav{
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+
+
+.non{
+    display: none;
+}
+
+
+nav div.logo{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+
+}
+
+nav div.logo img{
+    width:inherit;
+}
+
+nav div.buttons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 9999;
+}
+
+
+nav div.buttons > button{
+    padding: 10px 20px;
+    position: relative;
+    background: none;
+    border: none;
+}
+
+nav div.buttons > button:hover::before{
+    content: "";
+    position: absolute;
+    right: 0;
+    inset: 0;
+    background: url("img/background/mn.gif") no-repeat;
+    background-size: cover;
+    border: 2px solid black;
+    z-index: 0;
+    animation: gef 200ms alternate;
+}
+
+nav div.buttons > button.profile{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+
+}
+
+nav div.buttons > button.profile img{
+    width: inherit;
+
+}
+
+
+nav div.buttons > button > a{
+    position: relative;
+    text-decoration: none;
+    color: transparent;
+    font-size: large;
+    color: aqua;
+    text-shadow: 0 0 5px aqua;
+
+    text-decoration: none;
+    
+    
+}
+
+nav div.buttons > button:hover{
+    animation: gef 100ms alternate;
+  
+}
+
+@keyframes gef {
+    0%{
+        transform: translate(0px,0px);
+    }
+    25%{
+        transform: translate(-10px,10px);
+    }
+    50%{
+        transform: translate(20px,-10px);
+    }
+    75%{
+        transform: translate(0px,20px);
+    }
+    100%{
+        transform: translate(-30px, -10px);
+    }
+    
+}
+
+
+
+
+.tprofile{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    position: fixed;
+    right: 50px;
+    top: 100px;
+    overflow: hidden;
+    transition: 500ms;
+    height: 0;
+    transition: 1s;
+   
+
+}
+
+.down{
+    height: 100vh;
+}
+
+nav span.tprofile button{
+    width: 100%;
+    min-height: 50px;
+    font-size: large;
+}
+
+nav span.tprofile button:hover{
+    background: blue;
+}
+
+.glitcheffect{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+}
+
+button.x{
+
+    color: red;
+    position: absolute;top: 0;left: 0;
+    font-size: large;
+    background: black;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 2px solid white;
+    transform: translate(-50%, -50%);
+    transition: 500ms;
+}
+
+/*EXIT BUTTON*/
+
+button.x:hover{
+    color: white;
+    position: absolute;top: 0;left: 0;
+    font-size: small;
+    background: rgba(255, 0, 0, 0.5);
+    border-radius: 50px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border: 2px solid red;
+    transform: rotate(360deg);
+    transition: 500ms;
+    transform: translate(-50%, -50%);
+}
+
+button.x:hover::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    inset: 0;
+    background: url("img/background/mn.gif") no-repeat;
+    background-size: cover;
+    z-index: -1;
+    border-radius: 50%;
+    background-position: center;
+    animation: gef 100ms alternate;
+    
+}
+
+
+.mwatch{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+}
+
+.mwatch > div.modalm{
+    position: relative;
+    width: 60%;
+    height: 500px;
+    background: black;
+    border: 5px solid aqua;
+    box-shadow: 0 0 15px aquamarine;
+    border-radius: 30px;
+    display: flex;
+    color: aqua;
+}
+
+.modalm > div{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.modalm > div:first-child{
+    width: 40%;
+}
+
+.modalm > div.la{
+    flex: 1;
+    position: relative;
+
+}
+
+.modalm > div:first-child{
+
+}
+
+.modalm > div > .image{
+    width: 150px;
+    height: 200px;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modalm > div > .image > img{
+    width: inherit;
+
+}
+
+.watchbutton{
+    padding: 10px 20px;
+    border-radius: 50px;
+    width: 100px;
+    margin: 5px;
+    border: 2px solid aqua;
+    box-shadow: 0 0 5px black;
+    color: aqua;
+    background-color: black;
+    transition: 300ms;
+}
+
+.watchbutton:hover{
+    padding: 10px 30px;
+    box-shadow: 0 0 10px aqua;
+    
+}
+
+div.la > .description{
+    border: 5px solid black;
+    background-color: white;
+    width: 90%;
+    height: 300px;
+    padding: 20px;
+    color: black;
+}
+
+
+
+.rategenre{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.rategenre > *{
+    border-radius: 50px;
+    border: 5px solid aqua;
+    box-shadow: 0 0 5px black;
+    padding: 5px 10px;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer{
+    padding: 20px;
+    background: linear-gradient(to left, blue, lightblue, aqua, lightblue,blue);
+    border-top: 15px solid transparent;
+    border-image: url("img/border/b1.gif") 15% stretch;
+}

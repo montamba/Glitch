@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+
+    <style>
+        main{
+            background: url("../static/img/background/b.jpg") no-repeat;
+            background-position: 0 0;
+            background-size: cover;
+            display:flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            
+        }
+
+        main::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        main > div{
+            position: relative;
+            text-align: center;
+            z-index: 10;
+        }
+
+        main > div > h1{
+            font-size: 3rem;
+            color: cyan;
+            text-shadow: 0px 0px 15px cyan;
+        }
+
+        main > div p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: white;
+        }
+
+       
+        
+
+       
+
+        .hm{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .hm > div{
+            width: 70%;
+            height: 400px;
+            background-color: gray;
+            padding: 30px;
+            border: 5px solid black;
+            font-size: x-large;
+        }
+
+        .av{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background: black;
+            width: 100%;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-image: url("../static/img/border/bb1.gif") 15% stretch;
+        }
+
+        .av > div{
+            position: relative;
+            padding: 20px;
+            width: 80%;
+            background: black;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        
+
+        .av > div > .image{
+            width: 200px;
+            height: fit-content;
+            display: grid;
+            place-items: center;
+            border-radius: 20px;
+            border: 2px solid aqua;
+            overflow: hidden;
+            transition: 300ms;
+            
+        }
+
+        .av > div > .image > img{
+            width: 100%;
+
+        }
+
+        .av > div > .image:hover{
+            background: lightblue;
+            box-shadow: 0 0px 20px aqua;
+            border: none;
+            width: 210px;
+            height: 310px;
+            
+        }
+
+        .noshow{
+            display: none;
+        }
+
+        
+
+        @media (max-width:700px){
+            main{
+                background-position: center;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+    <nav style="z-index: 9999;">
+        <div class="logo">
+            <img src="../static/img/icon/Glitch.gif" alt="">
+        </div>
+
+        <div class="buttons">
+            <button class="nv" data-text="Home"><a>Home</a></button>
+            <button class="nv" data-text="Videos"><a>Videos</a></button>
+            <button class="nv" data-text="About Us"><a>About Us</a></button>
+            <button class="nv" data-text="Help"><a>Post</a></button>
+            <button class="profile" onclick="toggleprofile()"><img src="../{{data[3]}}" alt=""></button>
+        </div>
+
+        
+
+        <span class="tprofile">
+            <button onclick="window.location.href = '/profile'">Profile</button>
+            <button  >Saved</button>
+            <button onclick="window.location.href = '/logout'">Logout</button>
+        </span>
+    </nav>
+
+    <main>
+        <div>
+            <h1>Welcome to Glitch</h1>
+            <p>You can watch movies, Anime, and Entertaiment movies</p>
+            
+            
+        </div>
+    </main>
+
+    <section class="hm">
+        <div>
+            <h1>Glitch Website</h1>
+            <p>In Glitch You can Enjoy Watching </p>
+
+            <br>
+            <br>
+            <p>We make Sure users are confortable</p>
+            <p>Create a unique movie streaming website where the theme revolves 
+                around glitches, corrupted visuals, and digital distortions. The website 
+                should feel like an unstable, hacked, or haunted cinema experience, giving 
+                users an immersive and mysterious interface while browsing and watching movies.</p>
+        </div>
+    </section>
+
+
+    <section class="av">
+        <div>
+            <div class="image">
+                <img src="../static/img/movie pic/panda.jpg" alt="">
+
+                <div class="noshow">
+                    <h1 class="name">panda</h1>
+                    <h1 class="description">The movie beloved for its humor, action scenes, and inspirational messages about self-confident and perseverance.</h1>
+                    <h1 class="genre">hatdog</h1>
+                    <h1 class="rating">d</h1>
+
+                </div>
+            </div>
+
+            <div class="image">
+                <img src="../static/img/movie pic/A Quiet Place (2018).jpg" alt="">
+                <div class="noshow">
+                    <h1 class="name">A qiute Place</h1>
+                    <h1 class="description">d</h1>
+                    <h1 class="genre">hatdog</h1>
+                    <h1 class="rating">d</h1>
+
+                </div>
+            </div>
+
+            <div class="image">
+                <img src="../static/img/movie pic/Hereditary (2018).jpg" alt="">
+                <div class="noshow">
+                    <h1 class="name">Heeredity</h1>
+                    <h1 class="description">d</h1>
+                    <h1 class="genre">hatdog</h1>
+                    <h1 class="rating">d</h1>
+
+                </div>
+            </div>
+
+            <div class="image">
+                <img src="../static/img/movie pic/Akira (1988).jpg" alt="">
+                <div class="noshow">
+                    <h1 class="name">Akira</h1>
+                    <h1 class="description">d</h1>
+                    <h1 class="genre">hatdog</h1>
+                    <h1 class="rating">d</h1>
+
+                </div>
+            </div>
+
+            <div class="image">
+                <img src="../static/img/movie pic/Inception (2010).jpg" alt="">
+                <div class="noshow">
+                    <h1 class="name">Inception</h1>
+                    <h1 class="description">d</h1>
+                    <h1 class="genre">hatdog</h1>
+                    <h1 class="rating">d</h1>
+
+                </div>
+            </div>
+
+            <div class="image">
+                <img src="../static/img/movie pic/It (2017).jpg" alt="">
+                <div class="noshow">
+                    <h1 class="name">It (2017)</h1>
+                    <h1 class="description">d</h1>
+                    <h1 class="genre">hatdog</h1>
+                    <h1 class="rating">d</h1>
+                    <h1 class="id">6</h1>
+
+
+                </div>
+            </div>
+
+            <div class="image">
+                <img src="../static/img/movie pic/John Wick (2014).jpg" alt="">
+                <div class="noshow">
+                    <h1 class="id">5</h1>
+
+                    <h1 class="name">John Wick</h1>
+                    <h1 class="description">d</h1>
+                    <h1 class="genre">hatdog</h1>
+                    <h1 class="rating">d</h1>
+
+                </div>
+            </div>
+
+            <div class="image">
+                <img src="../static/img/movie pic/Jumanji.jpg" alt="">
+                <div class="noshow">
+                    <h1 class="id">4</h1>
+
+                    <h1 class="name">Jumanji</h1>
+                    <h1 class="description">d</h1>
+                    <h1 class="genre">hatdog</h1>
+                    <h1 class="rating">d</h1>
+
+                </div>
+            </div>
+
+            <div class="image">
+                <img src="../static/img/movie pic/Spiderman.jpg" alt="">
+                <div class="noshow">
+                    <h1 style="display:none;" class="id">3</h1>
+                    <h1 class="name">Spiderman</h1>
+                    <h1 class="description">d</h1>
+                    <h1 class="genre">hatdog</h1>
+                    <h1 class="rating">d</h1>
+
+                </div>
+            </div>
+
+
+            <div class="image">
+                <img src="../static/img/movie pic/The Conjuring.jpg" alt="">
+                <div class="noshow">
+                    <h1 class="id">8</h1>
+
+                    <h1 class="name">Conjuring</h1>
+                    <h1 class="description">d</h1>
+                    <h1 class="genre">hatdog</h1>
+                    <h1 class="rating">d</h1>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="non" id="no">
+        <div class="modalm">
+            <div>
+                <div class="image">
+                    <img id="image" src="" alt="">
+                </div><br>
+                <h1 id="title">Title</h1><br><br>
+                <button class="watchbutton">Watch</button>
+                <h1 style="display:none;" id="id">1</h1>
+            </div>
+            <div class="la">
+                <div class="description" id="description">
+                    <h1>dkdddddddnhjnbhjmbhjm b</h1>
+                    <p></p>
+
+                </div>
+                <div class="rategenre" style="color:blue;">
+                    <h1 id="rate">Rating: 5/5</h1>
+                    <h3 id="genre">Comedy</h3>
+                </div>
+
+
+            </div>
+            <button class="x" onclick="todisplay()">x</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <center>
+            <p>Allrigth Reserve</p>
+        </center>
+
+    </footer>
+
+    <script src="{{ url_for('static',filename='sc.js') }}">
+
+    </script>
+
+    <script>
+        function todisplay(...text){
+            let a = document.querySelector(".non");
+            a.classList.toggle("mwatch")
+            if(text.length <= 0){
+                
+            }
+        }
+
+
+        let b = document.querySelectorAll(".image")
+        b.forEach(b=>{
+            b.addEventListener("click",(event)=>{
+                let image = id("image")
+                let text = id("title")
+                let des = id("description")
+                let gen = id("genre")
+                let rate = id("rate")
+                let x = id("id")
+
+                image.src = event.target.src;
+
+                let container = event.currentTarget; 
+
+                text.innerText = container.querySelector(".name").innerText
+                des.innerText = container.querySelector(".description").innerText
+                gen.innerText = document.querySelector(".genre").innerText
+                rate.innerHTML = container.querySelector(".rating").innerHTML
+                x.innerText = container.querySelector(".id").innerText
+
+
+
+                todisplay()
+            })
+        })
+
+        function id(element){
+            return document.getElementById(element);
+        }
+
+        function send(){
+            let id = document.getElementById("id").innerText;
+            let data = {data:id}
+
+            fetch("/")
+        }
+    </script>
+    
+</body>
+</html>

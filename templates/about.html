@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <style>
+       
+
+        .first{
+            width: 100%;
+            height: 100vh;
+            background: url("../static/img/background/h.jpg") no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        .pic{
+            position: absolute;
+            left: 30%;
+            top: 30%;
+            left: 40%;
+            height: 300px;
+            width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            animation: wee 10s infinite linear;
+
+
+        }
+        .picturround{
+            position: absolute;
+            background: black;
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            border: 5px solid aqua;
+            box-shadow: 0 0 20px black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: 500ms;
+
+        }
+
+        .topleft{
+            
+            left: 0;
+            top: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        .topleft>img:hover::before{
+            background: red;
+        }
+        .toprigth{
+            right: 0;
+            top: 0;
+            transform: translate(50%, -50%);
+        }
+
+        .botleft{
+            left: 0;
+            bottom: 0;
+            transform: translate(-50%, 50%);
+        }
+
+        .botrigth{
+            right: 0;
+            bottom: 0;
+            transform: translate(50%, 50%);
+        }
+
+        .exp{
+            transform: scale(1.5);
+        }
+
+        .picturround > img{
+            width: 100%;
+            animation: fi 10s infinite linear;
+        }
+
+        .no{
+            position: absolute;
+        }
+
+        
+
+
+        @keyframes wee {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fi {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        
+
+        .second{
+            height: 50vh;
+            padding: 50px;
+            background-color: aquamarine;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+
+    <nav style="position: relative;z-index:9999;">
+        <div class="logo">
+            <img src="../static/img/icon/Glitch.gif" alt="">
+        </div>
+
+        <div class="buttons">
+            <button class="nv" data-text="Home"><a>Home</a></button>
+            <button class="nv" data-text="Videos"><a>Videos</a></button>
+            <button class="nv" data-text="About Us"><a>About Us</a></button>
+            <button class="nv" data-text="Help"><a>Post</a></button>
+            <button class="profile" onclick="toggleprofile()"><img src="../{{profile[3]}}" alt=""></button>
+        </div>
+
+        
+
+      
+        <span class="tprofile">
+            <button onclick="window.location.href = '/profile'">Profile</button>
+            <button  >Saved</button>
+            <button onclick="window.location.href = '/logout'">Logout</button>
+        </span>
+    </nav>
+
+    <section class="first" >
+        <div class="pic" onclick="onebyone()">
+            <div class="ro">
+
+            </div>
+
+            <div class="picturround" style="z-index: 9;"><img class="ime"  alt=""></div>
+            <div class="picturround" style="z-index: 9;"><img class="ime"  alt=""></div>
+            <div class="picturround" style="z-index: 9;"><img class="ime"  alt=""></div>
+            <div class="picturround" style="z-index: 9;"><img class="ime"  alt=""></div>
+            <div class="picturround"><img class="ime" alt=""></div>
+
+        </div>
+
+        
+
+    </section>
+
+    <section class="second">
+        Welcome to Glitch, your ultimate destination for streaming the best movies and TV shows! <br>
+        We bring you a vast collection of films across all genres—action, drama, comedy, thriller, <br>
+        and more—so you can enjoy endless entertainment anytime, <br><br>
+
+At Glitch, we are passionate about delivering a seamless and high-quality viewing experience. With an easy-to-use interface, fast streaming, and a constantly updated library, we make sure you never run out of amazing content to watch.
+    </section>
+
+
+
+
+
+
+    <script>
+        function onebyone() {
+            let con = [...document.querySelectorAll(".picturround")];
+            let th = [...document.querySelectorAll(".ime")];
+            let num = ["topleft","toprigth","botleft","botrigth","exp"]
+            let img = ["../static/img/profile/monmon.jpg","../static/img/profile/hatdogdamon.jpg","../static/img/profile/hatdogkhent.jpg","../static/img/profile/hatdogkitch.jpg","../static/img/icon/Glitch.gif"]
+            let counter = 0;
+        
+            function c() {
+                con[counter].classList.toggle(num[counter])
+                th[counter].src = img[counter]
+                
+        
+                if (counter +1 < con.length) {
+                    counter++;
+                    setTimeout(c, 1000);
+                }else{
+                    counter=0
+                }
+            }
+            c();
+        }
+        
+
+        
+
+    </script>
+    <script src="{{ url_for('static',filename='sc.js') }}">
+
+    </script>
+    
+</body>
+</html>

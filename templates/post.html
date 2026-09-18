@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create post</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <style>
+        main{
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: url("../static/img/background/b4.gif");
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+
+        .postcon{
+            width: 70%;
+            height: 500px;
+            background: black;
+            color: aliceblue;
+            border: 5px solid aqua;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .postcon > div:first-child{
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .postcon > .last{
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .imageupload{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .postcon > div > .imageupload input{
+            display: none;
+        }
+
+        .postcon > div > .imageupload > label{
+            min-width: 200px;
+            min-height: 200px;
+            font-size: 50px;
+            color: aqua;
+            border: 5px dashed aqua;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .postcon > div > .imageupload > label:hover{
+            cursor: pointer;
+            border: 3px dashed blue;
+            font-size: 60px;
+            color: blue;
+            box-shadow: 0 0 15px lightblue;
+            
+        }
+
+        .imageupload > h1{
+            margin: 10px;
+        }
+
+        .last > .inputtitle{
+            font-size: 30px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .inputtitle > input{
+            background: transparent;
+            flex: 1;
+            border: none;
+            border-bottom: 2px solid aqua;
+            padding: 10px 20px;
+            font-size: large;
+        }
+
+        .last > .description{
+            width: 100%;
+            padding: 20px;
+            height: 250px;
+            background: black;
+            color: aqua;
+            text-shadow: 0 0 5px aqua;
+            border: 4px solid aqua;
+
+        }
+
+        .last > .butt{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+
+        }
+
+        .butt > input{
+            padding: 10px 20px;
+            background: none;
+            border: 2px solid aqua;
+            width: 100px;
+            height: 50px;
+            border-radius: 10px;
+            border: 2px solid aqua;
+            color: aqua;
+        }
+
+        .butt button{
+            padding: 10px 20px;
+            background: aqua;
+            border: 2px solid aqua;
+            border-radius: 10px;
+            width: 100px;
+            height: 50px;
+        }
+
+        
+
+        
+    </style>
+</head>
+<body>
+    <nav style="position: relative;z-index:9999;">
+        <div class="logo">
+            <img src="../static/img/icon/Glitch.gif" alt="">
+        </div>
+
+        <div class="buttons">
+            <button class="nv" data-text="Home"><a>Home</a></button>
+            <button class="nv" data-text="Videos"><a>Videos</a></button>
+            <button class="nv" data-text="About Us"><a>About Us</a></button>
+            <button class="nv" data-text="Help"><a>Post</a></button>
+            <button class="profile" onclick="toggleprofile()"><img src="../{{data[3]}}" alt=""></button>
+        </div>
+
+        
+
+        <span class="tprofile">
+            <button onclick="window.location.href = '/profile'">Profile</button>
+            <button  >Saved</button>
+            <button onclick="window.location.href = '/logout'">Logout</button>
+        </span>
+    </nav>
+
+    <main>
+
+        <form action="/postvid" method="post" enctype="multipart/form-data" class="postcon">
+            <div>
+                <div class="imageupload">
+                    <label for="imgup">+</label>
+                    <input name="imagesrc" type="file" id="imgup">
+                    <h1>Image</h1>
+
+                </div>
+
+                <div class="imageupload">
+                    <label id="vg" for="vid"><</label>
+                    <input name='move' type="file" id="vid">
+                    <h1>Video</h1>
+                </div>
+
+            </div>
+            <div class="last">
+                <div class="inputtitle">
+                    <label for="title" >Title: </label>
+                    <input name="title" style="color:aqua;" type="text">
+
+                </div>
+
+                <textarea name="des" class="description" placeholder="Description" name="" id=""></textarea>
+
+                <div class="butt">
+                    <input name="gen" type="text" placeholder="genre">
+                    <button>submit</button>
+                </div>
+            </div>
+            
+        </form>
+
+    </main>
+
+    <script>
+        name = "{{ hmmm }}"
+        if(name.length > 0){
+            alert(name)
+        }
+
+        
+    </script>
+
+
+
+    <script src="{{ url_for('static', filename='sc.js') }}"></script>
+    
+</body>
+</html>

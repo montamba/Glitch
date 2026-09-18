@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Page</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        
+        body {
+            font-family: 'Orbitron', sans-serif;
+        }
+        nav{
+            background-color: aqua;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            
+
+        }
+
+        nav > div:first-child{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;   
+        }
+
+        nav > div:first-child > img{
+            width: 100px;
+            width: 100px;
+              
+        }
+
+        nav > div:last-child > button{
+            width: 100px;
+            height: 60px;
+            padding: 20px 10px;
+            font-size: 20px;
+            margin: 1px 20px;
+            border-radius: 20px;
+            text-align: center; 
+            transition: 300ms;
+        }
+
+        nav > div:last-child > button:hover{
+            border: 5px solid blue;
+        }
+
+        main{
+            background:url("../static/img/background/s.avif") no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            
+
+        }
+
+        main > div{
+            width: 400px;
+            height: 400px;
+            display: grid;
+            place-content: center;
+            
+        }
+
+        main > div > img{
+            filter: drop-shadow(10px 10px 10px black);
+            width: auto;
+            height: inherit;
+
+        }
+
+        main > div:last-child > img{
+            border-radius: 50px;
+            filter: drop-shadow(0 0 10px blue);
+
+        }
+
+        .sec{
+            background-color: #f0f0f0;
+            height: calc(fit-content + 20px);
+            width: 100%;
+            font-size: 30px;
+            padding: 30px;
+            display: grid;
+            place-items: center;
+
+            
+        }
+
+        .sec div{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            padding: 20px;
+            max-width: 60%;
+            border: 5px solid black;
+            border-radius: 20px;
+        }
+
+        .sec1{
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background: url("../static/img/background/b2.gif");
+
+        }
+
+        .sec1 .container{
+            display: flex;
+            align-items: center;
+            width: 80%;
+            height: 500px;
+            overflow: hidden;
+            background-color: aquamarine;
+            gap: 30px;
+            border: 25px solid transparent;
+            border-image: url("../static/img/border/b1.gif") 20% stretch;
+        }
+
+        .container div{
+            min-width: 200px;
+            width: 200px;
+            padding: 10px;
+            background-image: linear-gradient(to top left, blue, skyblue);
+            overflow: hidden;
+            animation: ly 30s linear infinite;
+            
+        }
+
+        .container > div > img{
+            width: calc(200px - 20px);
+
+        }
+
+        @keyframes ly {
+            0%{
+                transform: translateX(20px);
+            }100%{
+                transform: translateX(-2280px);
+            }
+  
+        }
+
+        @media (max-width: 700px) {
+            main{
+                height: 70vh;
+            }
+            main div:first-child{
+                width: 200px;
+                height: 200px;
+               position: absolute;
+               top: 50%;
+               left: 50%;
+               transform: translate(-50%, -50%);
+               filter: opacity(50%);
+
+            }
+
+            main div:last-child{
+                transform: scale(0.3);
+            }
+
+            nav > div:first-child{
+                width: 70px;
+                height: 70px;       
+            }
+
+            nav > div:first-child > img{
+                width: 70px;
+                width:70px;
+                  
+            }
+
+            nav > div:last-child > button{
+                width: 60px;
+                height: 40px;
+                padding: 10px 5px;
+                font-size: 10px;
+                margin:3px;
+                border-radius: 10px;
+                display: block;
+            }
+
+            .sec div{         
+                font-size: 20px;      
+                padding: 10px;
+                max-width: 90%;
+            }
+
+            
+        }
+    </style>
+
+    <style>
+
+        .mcon{
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            place-items: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+        }
+
+        .tcon{padding-left: 20px;
+            padding-top: 50px ;
+            min-width: 600px;
+            max-width: 600px;
+            height: 500px;
+            border: 15px solid transparent;
+            border-image: url("../static/img/border/b1.gif") 15% stretch;
+            overflow: hidden;
+        }
+
+        .scon{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 100px;
+            min-width: fit-content ;
+            overflow: hidden;
+
+            transform: translateX(20px);
+            transition: 300ms;
+        }
+
+
+        .consign{
+            background: #00DDFF;
+            border: 5px solid black;
+            border-radius: 20px;
+            width: 500px;
+            height: 400px;
+        }
+
+        .consign form{
+            position: relative;
+            display: flex;
+            height: inherit;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .consign form > div:first-child{
+            width: 100%;
+            height: 40px;
+            background:black;
+            position: absolute;top: 0;
+            
+        }
+
+        button.x{
+            color: red;
+            position: absolute;top: 0;left: 0;
+            font-size: large;
+            background: black;
+            border-radius: 50px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            border: 2px solid white;
+            transition: 500ms;
+        }
+
+        button.x:hover{
+            color: white;
+            position: absolute;top: 0;left: 0;
+            font-size: small;
+            background: rgba(255, 0, 0, 0.5);
+            border-radius: 50px;
+            width: 35px;
+            height: 35px;
+            text-align: center;
+            border: 2px solid red;
+            transform: rotate(360deg);
+            transition: 500ms;
+        }
+
+        .consign form > div:first-child >h1{
+            font-size: larger;
+            color: white;
+            text-align: center;
+            
+        }
+
+        .consign form input{
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .consign form input[type="text"],.consign form input[type="password"]{
+            width: 60%;
+        }
+
+        @media (max-width:700px){
+
+            .mcon{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+            }
+            .tcon{
+                transform: scale(0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <img src="../static/img/icon/Glitch.gif" alt="noLogo">
+        </div>
+
+        <div>
+            <button class="sign">Login</button>
+            <button class="sign">Signup</button>
+        </div>
+    </nav>
+
+    <main>
+
+        <div>
+            <img src="../static/img/icon/Glitch-unscreen.gif" width="inherit"  alt="">
+            
+            
+        </div>
+        <div >
+            <img alt="no image" id="m">
+        </div>
+
+    </main>
+
+    <section class="sec">
+
+        <div>
+            <h1>𝕰𝖓𝖙𝖊𝖗 𝖙𝖍𝖊 𝖂𝖔𝖗𝖑𝖉 𝖔𝖋 𝕯𝖎𝖌𝖎𝖙𝖆𝖑 𝕮𝖍𝖆𝖔𝖘!</h1>
+            <br>
+            <p>𝕊𝕥𝕖𝕡 𝕚𝕟𝕥𝕠 𝕒 𝕨𝕠𝕣𝕝𝕕 𝕨𝕙𝕖𝕣𝕖 𝕡𝕚𝕩𝕖𝕝𝕤 𝕕𝕚𝕤𝕥𝕠𝕣𝕥, 𝕣𝕖𝕒𝕝𝕚𝕥𝕪 𝕓𝕖𝕟𝕕𝕤, 𝕒𝕟𝕕 𝕖𝕧𝕖𝕣𝕪 𝕘𝕝𝕚𝕥𝕔𝕙 𝕥𝕖𝕝𝕝𝕤 𝕒 𝕤𝕥𝕠𝕣𝕪! </p>
+            <p>𝔄𝔯𝔢 𝔶𝔬𝔲 𝔯𝔢𝔞𝔡𝔶 𝔱𝔬 𝔢𝔵𝔭𝔢𝔯𝔦𝔢𝔫𝔠𝔢 𝔠𝔦𝔫𝔢𝔪𝔞 𝔩𝔦𝔨𝔢 𝔫𝔢𝔳𝔢𝔯 𝔟𝔢𝔣𝔬𝔯𝔢? 𝔍𝔬𝔦𝔫 𝔊𝔩𝔦𝔱𝔠𝔥: 𝔗𝔥𝔢 𝔐𝔬𝔳𝔦𝔢𝔰 𝔚𝔢𝔟 𝔞𝔫𝔡 𝔢𝔵𝔭𝔩𝔬𝔯𝔢 𝔱𝔥𝔢 𝔲𝔫𝔢𝔵𝔭𝔢𝔠𝔱𝔢𝔡! </p>
+
+        </div>
+        
+    </section>
+
+    <section class="sec1">
+
+        <div class="container">
+            <div>
+                <img src="../static/img/movie pic/m1.jpg" alt="">
+            </div>
+    
+            <div>
+                <img src="../static/img/movie pic/m2.jpg" alt="">
+            </div>
+    
+            <div>
+                <img src="../static/img/movie pic/m3.jpg" alt="">
+            </div>
+            <div>
+                <img src="../static/img/movie pic/m4.jpg" alt="">
+            </div>
+            <div>
+                <img src="../static/img/movie pic/m5.jpg" alt="">
+            </div>
+    
+            <div>
+                <img src="../static/img/movie pic/m6.jpg" alt="">
+            </div>
+
+            <div>
+                <img src="../static/img/movie pic/m7.jpg" alt="">
+            </div>
+
+            <div>
+                <img src="../static/img/movie pic/m8.jpg" alt="">
+            </div>
+
+            <div>
+                <img src="../static/img/movie pic/m9.jpg" alt="">
+            </div>
+
+            <div>
+                <img src="../static/img/movie pic/m10.jpg" alt="">
+            </div>
+
+            <div>
+                <img src="../static/img/movie pic/m1.jpg" alt="">
+            </div>
+    
+            <div>
+                <img src="../static/img/movie pic/m2.jpg" alt="">
+            </div>
+    
+            <div>
+                <img src="../static/img/movie pic/m3.jpg" alt="">
+            </div>
+            <div>
+                <img src="../static/img/movie pic/m4.jpg" alt="">
+            </div>
+            <div>
+                <img src="../static/img/movie pic/m5.jpg" alt="">
+            </div>
+    
+            <div>
+                <img src="../static/img/movie pic/m6.jpg" alt="">
+            </div>
+
+            <div>
+                <img src="../static/img/movie pic/m7.jpg" alt="">
+            </div>
+
+            <div>
+                <img src="../static/img/movie pic/m8.jpg" alt="">
+            </div>
+
+            <div>
+                <img src="../static/img/movie pic/m9.jpg" alt="">
+            </div>
+
+            <div>
+                <img src="../static/img/movie pic/m10.jpg" alt="">
+            </div>
+
+        </div>
+        
+
+    </section>
+
+    <section>
+        
+    </section>
+
+    <div class="mcon">
+        <div class="tcon">
+            <div class="scon" id="scon">
+                <div class="consign" >
+                    <form action="/authen" method="post">
+                        <div><h1>Sign Up</h1></div>
+                        <button onclick="shw()" type="button" class="x">x</button>
+                        <input type="text" name="name" placeholder="Enter name">
+                        <input class="passs" name="pass" type="password" placeholder="Enter password">
+                        <input class="passs" name="cpass" type="password" placeholder="Confirm password">
+                        <div>
+                            <label>Show password:</label><input class="shw" type="checkbox">
+                        </div>
+                        <input name="signin" type="submit">
+                        <p><a href="#" onclick="loginsign('Login', false)">Already has an Account? Log In</a></p>
+                        <div>
+                        <input type="submit" value="signin With google">
+                        <input type="submit" value="signin with facebook">
+            
+                        </div>
+                    </form>
+                </div>
+    
+                <div class="consign">
+                    <form action="/authen" method="post">
+                        <div><h1>Log In</h1></div>
+                        <button onclick="shw()" type="button" class="x">x</button>
+                        <input name="name" type="text" placeholder="Enter name">
+                        <input name="pass" class="passs" type="password" placeholder="Enter password">
+                        <div>
+                            <label >Show password:</label><input class="shw" type="checkbox">
+                        </div>
+                        <input name="login" type="submit">
+                        <p><a href="#" onclick="loginsign('Signup', false)">Don't have an account? Sign Up</a></p>
+                        <div>
+                        <input type="submit" value="signin With google">
+                        <input type="submit" value="signin with facebook">
+            
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        
+        
+
+
+    </div>
+
+
+
+
+    <script>
+        
+    
+
+        let images = ["../static/img/random/three.png","../static/img/random/one.png","../static/img/random/two.png"];
+        let w = document.getElementById("m");
+        let n = 0;
+        function im(){
+            n = (n<2) ? n+= 1 : 0;
+            w.src = images[n];
+        }
+
+        setInterval(im, 1500)
+
+
+        let a = document.querySelectorAll(".shw");
+        a.forEach(ab=>{
+            ab.addEventListener("click",()=>{
+                let b = document.querySelectorAll(".passs");
+                b.forEach(
+                    (aa)=>{
+                        aa.type = (a.checked)?"text":"password";
+                    }
+                );
+            })
+        })
+
+        function shw(){
+            let n =document.querySelector(".mcon");
+            n.style.display = (n.style.display === "grid") ? "none" : "grid";
+
+        }
+
+        function loginsign(text, s){
+            let scon = document.getElementById("scon");
+                if(text == "Login"){
+                    scon.style.transform = "translateX("+-580+"px)";  
+                }else{
+                    scon.style.transform = "translateX("+20+"px)";  
+                }
+                if(s){
+                    shw();
+                }
+
+        }
+
+        let b = document.querySelectorAll(".sign");
+        b.forEach(ele =>{
+            ele.addEventListener("click",() =>{
+                let text = ele.innerText;
+                loginsign(text, true);    
+                
+            })
+        })
+
+        let pass = "{{ password }}"
+        if(pass.length > 0){
+            alert("{{password}}")
+
+        }
+    </script>
+    
+</body>
+</html>
